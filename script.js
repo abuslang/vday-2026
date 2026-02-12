@@ -1,6 +1,7 @@
 // State
 let selectedPhotos = [];
 let selectedPhotoSrcs = [];
+let selectedPhotoCaptions = [];
 let yesScale = 1;
 
 // Elements
@@ -37,15 +38,18 @@ function setupCaptcha() {
 function togglePhoto(cell) {
     const index = cell.dataset.index;
     const imgSrc = cell.querySelector('.photo-img').src;
+    const caption = cell.dataset.caption || '';
 
     if (cell.classList.contains('selected')) {
         cell.classList.remove('selected');
         selectedPhotos = selectedPhotos.filter(i => i !== index);
         selectedPhotoSrcs = selectedPhotoSrcs.filter(src => src !== imgSrc);
+        selectedPhotoCaptions = selectedPhotoCaptions.filter(c => c !== caption);
     } else if (selectedPhotos.length < 3) {
         cell.classList.add('selected');
         selectedPhotos.push(index);
         selectedPhotoSrcs.push(imgSrc);
+        selectedPhotoCaptions.push(caption);
     }
 
     updateVerifyButton();
@@ -208,10 +212,11 @@ function createPolaroids(screenId) {
         polaroid.style.setProperty('--rotate', pos.rotate + 'deg');
         polaroid.style.animationDelay = (index * 0.5) + 's';
 
+        const caption = selectedPhotoCaptions[index] || '';
         polaroid.innerHTML = `
             <div class="polaroid-inner">
                 <img src="${src}" alt="Memory">
-                <div class="polaroid-caption"></div>
+                <div class="polaroid-caption">${caption}</div>
             </div>
         `;
 
