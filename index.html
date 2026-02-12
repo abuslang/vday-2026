@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Verification</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Screen 1: Captcha -->
+    <div id="captcha-screen" class="screen active">
+        <div class="captcha-container">
+            <div class="captcha-header">
+                <div class="captcha-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="captcha-title">
+                    <span class="captcha-main-text">Select your 3 favorite photos</span>
+                    <span class="captcha-sub-text">Click on any 3 images that you like best</span>
+                </div>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-cell" data-index="0">
+                    <img src="images/bar-harbor.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="1">
+                    <img src="images/botson-first.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="2">
+                    <img src="images/buccees.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="3">
+                    <img src="images/fair.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="4">
+                    <img src="images/horse-sachse.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="5">
+                    <img src="images/safa-eating.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="6">
+                    <img src="images/sara-f-wedding.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="7">
+                    <img src="images/snow.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="photo-cell" data-index="8">
+                    <img src="images/universal.jpg" alt="" class="photo-img">
+                    <div class="checkmark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="captcha-footer">
+                <button id="verify-btn" class="verify-btn" disabled>VERIFY</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Loading -->
+    <div id="loading-screen" class="screen">
+        <div class="loader-container">
+            <div class="spinner"></div>
+            <p class="loading-text">Verifying...</p>
+        </div>
+    </div>
+
+    <!-- Screen 3: Success -->
+    <div id="success-screen" class="screen">
+        <div class="success-container">
+            <div class="success-checkmark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="16 9 10.5 14.5 8 12" stroke-width="2"/>
+                </svg>
+            </div>
+            <p class="success-text">Verification successful!</p>
+        </div>
+    </div>
+
+    <!-- Screen 4: Envelope -->
+    <div id="envelope-screen" class="screen">
+        <div class="envelope-container">
+            <p class="envelope-hint">Tap to open</p>
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <div class="envelope-to">To: Safa Khan</div>
+                    <div class="heart-seal">
+                        <svg viewBox="0 0 24 24" fill="#e91e63">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Valentine Question -->
+    <div id="valentine-screen" class="screen">
+        <div class="hearts-container" id="hearts-container"></div>
+
+        <div class="valentine-content">
+            <!-- Cute Cat GIF -->
+            <div class="cat-container">
+                <img src="images/cat.gif" alt="Cute cat" class="cat-gif">
+            </div>
+
+            <h1 class="valentine-question">Will you be my Valentine?</h1>
+
+            <div class="buttons-container">
+                <button id="yes-btn" class="answer-btn yes-btn">Yes!</button>
+                <button id="no-btn" class="answer-btn no-btn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 6: Celebration -->
+    <div id="celebration-screen" class="screen">
+        <div class="celebration-hearts" id="celebration-hearts"></div>
+        <div class="celebration-content">
+            <!-- Cute Cat GIF (celebration) -->
+            <div class="cat-container happy">
+                <img src="images/cat.gif" alt="Cute cat" class="cat-gif">
+            </div>
+            <h1 class="celebration-text">Yay! I love you!</h1>
+            <div class="heart-burst" id="heart-burst"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
